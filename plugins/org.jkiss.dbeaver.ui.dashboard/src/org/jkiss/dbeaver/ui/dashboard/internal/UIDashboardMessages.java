@@ -23,8 +23,14 @@ public class UIDashboardMessages extends NLS {
 
     public static String pref_page_dashboards_group_common;
     public static String pref_page_dashboards_open_separate_connection_label;
-
-
+    public static String add_dialog_dashboard_add_dashboard;
+	public static String add_dialog_dashboard_name;
+	public static String add_dialog_dashboard_desc;
+	public static String add_dialog_dashboard_manage;
+	public static String add_dialog_dashboard_add_button;
+	public static String add_dialog_dashboard_cancel_button;
+	public static String add_dialog_dashboard_no_more_panels;
+	
     static {
         // initialize resource bundle
         NLS.initializeMessages(BUNDLE_NAME, UIDashboardMessages.class);
