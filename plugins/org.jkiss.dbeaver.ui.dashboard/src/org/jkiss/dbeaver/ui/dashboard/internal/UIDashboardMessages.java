@@ -30,7 +30,39 @@ public class UIDashboardMessages extends NLS {
 	public static String add_dialog_dashboard_add_button;
 	public static String add_dialog_dashboard_cancel_button;
 	public static String add_dialog_dashboard_no_more_panels;
-	
+	public static String edit_dialog_dashboard_dashboard;
+	public static String edit_dialog_dashboard_predifened_dashbords_read_only;
+	public static String edit_dialog_dashboard_id;
+	public static String add_dialog_dashboard_database;
+	public static String edit_dialog_dashboard_select;
+	public static String edit_dialog_dashboard_data_type;
+	public static String edit_dialog_dashboard_type_of_data;
+	public static String edit_dialog_dashboard_calc_type;
+	public static String edit_dialog_dashboard_value_calculation_type;
+	public static String edit_dialog_dashboard_main_info;
+	public static String edit_dialog_dashboard_name;
+	public static String edit_dialog_dashboard_value_type;
+	public static String edit_dialog_dashboard_type_of_values;
+	public static String edit_dialog_dashboard_interval;
+	public static String edit_dialog_dashboard_interval_values;
+	public static String edit_dialog_dashboard_fetch_type;
+	public static String edit_dialog_dashboard_fetch_type_values;
+	public static String edit_dialog_dashboard_desc;
+
+	public static String edit_dialog_dashboard_queries;
+
+	public static String edit_dialog_dashboard_use_blank_line;
+
+	public static String edit_dialog_dashboard_rendering;
+
+	public static String edit_dialog_dashboard_defatul_view;
+
+	public static String edit_dialog_dashboard_dashboard_view;
+
+	public static String edit_dialog_dashboard_update_period;
+
+	public static String edit_dialog_dashboard_maximum_items;
+
     static {
         // initialize resource bundle
         NLS.initializeMessages(BUNDLE_NAME, UIDashboardMessages.class);
