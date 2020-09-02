@@ -63,6 +63,46 @@ public class UIDashboardMessages extends NLS {
 
 	public static String edit_dialog_dashboard_maximum_items;
 
+	public static String item_config_dialog_dashboard_dashboard;
+
+	public static String item_config_dialog_dashboard_dashboard_info;
+
+	public static String item_config_dialog_dashboard_name;
+
+	public static String item_config_dialog_dashboard_description;
+
+	public static String item_config_dialog_dashboard_sql_queries;
+
+	public static String item_config_dialog_dashboard_dashboard_read_queries;
+
+	public static String item_config_dialog_dashboard_dashboard_update;
+
+	public static String item_config_dialog_dashboard_update_period;
+
+	public static String item_config_dialog_dashboard_maximum_items;
+
+	public static String item_config_dialog_dashboard_dashboard_view;
+
+	public static String item_config_dialog_dashboard_view;
+
+	public static String item_config_dialog_dashboard_show_legend;
+
+	public static String item_config_dialog_dashboard_show_legend_hint;
+
+	public static String item_config_dialog_dashboard_show_grid;
+
+	public static String item_config_dialog_dashboard_show_grid_hint;
+
+	public static String item_config_dialog_dashboard_show_doamin_axis;
+
+	public static String item_config_dialog_dashboard_show_domain_axis_hint;
+
+	public static String item_config_dialog_dashboard_show_range_axis;
+
+	public static String item_config_dialog_dashboard_show_range_axis_hint;
+
+	public static String item_config_dialog_dashboard_configuration;
+
     static {
         // initialize resource bundle
         NLS.initializeMessages(BUNDLE_NAME, UIDashboardMessages.class);
