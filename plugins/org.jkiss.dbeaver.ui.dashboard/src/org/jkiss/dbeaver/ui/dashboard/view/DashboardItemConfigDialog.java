@@ -29,6 +29,7 @@ import org.jkiss.dbeaver.runtime.ui.UIServiceSQL;
 import org.jkiss.dbeaver.ui.DBeaverIcons;
 import org.jkiss.dbeaver.ui.UIIcon;
 import org.jkiss.dbeaver.ui.UIUtils;
+import org.jkiss.dbeaver.ui.dashboard.internal.UIDashboardMessages;
 import org.jkiss.dbeaver.ui.dashboard.model.DashboardContainer;
 import org.jkiss.dbeaver.ui.dashboard.model.DashboardItemViewConfiguration;
 import org.jkiss.dbeaver.ui.dashboard.model.DashboardViewConfiguration;
@@ -36,6 +37,7 @@ import org.jkiss.dbeaver.ui.dashboard.model.DashboardViewType;
 import org.jkiss.dbeaver.ui.dashboard.registry.DashboardDescriptor;
 import org.jkiss.dbeaver.ui.dashboard.registry.DashboardRegistry;
 import org.jkiss.dbeaver.ui.dialogs.BaseDialog;
+import org.jkiss.dbeaver.ui.internal.UIMessages;
 import org.jkiss.utils.CommonUtils;
 
 import java.util.List;
@@ -51,7 +53,7 @@ public class DashboardItemConfigDialog extends BaseDialog {
 
     public DashboardItemConfigDialog(Shell shell, DashboardContainer dashboardContainer, DashboardViewConfiguration viewConfiguration)
     {
-        super(shell, "Dashboard [" + dashboardContainer.getDashboardTitle() + "]", null);
+        super(shell, UIDashboardMessages.item_config_dialog_dashboard_dashboard+" [" + dashboardContainer.getDashboardTitle() + "]", null);
 
         this.viewConfiguration = viewConfiguration;
         this.dashboardContainer = dashboardContainer;
@@ -70,13 +72,13 @@ public class DashboardItemConfigDialog extends BaseDialog {
         Composite composite = super.createDialogArea(parent);
 
         {
-            Group infoGroup = UIUtils.createControlGroup(composite, "Dashboard info", 4, GridData.FILL_HORIZONTAL, 0);
+            Group infoGroup = UIUtils.createControlGroup(composite, UIDashboardMessages.item_config_dialog_dashboard_dashboard_info, 4, GridData.FILL_HORIZONTAL, 0);
 
             //UIUtils.createLabelText(infoGroup, "ID", dashboardConfig.getDashboardDescriptor().getId(), SWT.BORDER | SWT.READ_ONLY);
-            UIUtils.createLabelText(infoGroup, "Name", dashboardConfig.getDashboardDescriptor().getName(), SWT.BORDER | SWT.READ_ONLY)
+            UIUtils.createLabelText(infoGroup, UIDashboardMessages.item_config_dialog_dashboard_name, dashboardConfig.getDashboardDescriptor().getName(), SWT.BORDER | SWT.READ_ONLY)
                 .setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 3, 1));
 
-            UIUtils.createControlLabel(infoGroup, "Description").setLayoutData(new GridData(GridData.VERTICAL_ALIGN_BEGINNING));
+            UIUtils.createControlLabel(infoGroup, UIDashboardMessages.item_config_dialog_dashboard_description).setLayoutData(new GridData(GridData.VERTICAL_ALIGN_BEGINNING));
             Text descriptionText = new Text(infoGroup, SWT.BORDER | SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
             descriptionText.setText(CommonUtils.notEmpty(dashboardConfig.getDescription()));
             descriptionText.addModifyListener(e -> {
@@ -91,7 +93,7 @@ public class DashboardItemConfigDialog extends BaseDialog {
                 Composite btnGroup = UIUtils.createComposite(infoGroup, 1);
                 btnGroup.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 4, 1));
                 Button queriesButton = new Button(btnGroup, SWT.PUSH);
-                queriesButton.setText("SQL Queries ...");
+                queriesButton.setText(UIDashboardMessages.item_config_dialog_dashboard_sql_queries);
                 queriesButton.setImage(DBeaverIcons.getImage(UIIcon.SQL_SCRIPT));
                 queriesButton.setLayoutData(new GridData(GridData.END, GridData.BEGINNING, true, false));
                 queriesButton.addSelectionListener(new SelectionAdapter() {
@@ -105,7 +107,7 @@ public class DashboardItemConfigDialog extends BaseDialog {
                         if (serviceSQL != null) {
                             serviceSQL.openSQLViewer(
                                 DBUtils.getDefaultContext(dashboardContainer.getDataSourceContainer().getDataSource(), true),
-                                "Dashboard read queries",
+                                UIDashboardMessages.item_config_dialog_dashboard_dashboard_read_queries,
                                 UIIcon.SQL_SCRIPT,
                                 sql.toString(),
                                 false, false);
@@ -117,13 +119,13 @@ public class DashboardItemConfigDialog extends BaseDialog {
         }
 
         {
-            Group updateGroup = UIUtils.createControlGroup(composite, "Dashboard update", 2, GridData.FILL_HORIZONTAL, 0);
+            Group updateGroup = UIUtils.createControlGroup(composite, UIDashboardMessages.item_config_dialog_dashboard_dashboard_update, 2, GridData.FILL_HORIZONTAL, 0);
 
-            Text updatePeriodText = UIUtils.createLabelText(updateGroup, "Update period (ms)", String.valueOf(dashboardConfig.getUpdatePeriod()), SWT.BORDER, new GridData(GridData.FILL_HORIZONTAL));
+            Text updatePeriodText = UIUtils.createLabelText(updateGroup, UIDashboardMessages.item_config_dialog_dashboard_update_period, String.valueOf(dashboardConfig.getUpdatePeriod()), SWT.BORDER, new GridData(GridData.FILL_HORIZONTAL));
             updatePeriodText.addModifyListener(e -> {
                 dashboardConfig.setUpdatePeriod(CommonUtils.toLong(updatePeriodText.getText(), dashboardConfig.getUpdatePeriod()));
             });
-            Text maxItemsText = UIUtils.createLabelText(updateGroup, "Maximum items", String.valueOf(dashboardConfig.getMaxItems()), SWT.BORDER, new GridData(GridData.FILL_HORIZONTAL));
+            Text maxItemsText = UIUtils.createLabelText(updateGroup, UIDashboardMessages.item_config_dialog_dashboard_maximum_items, String.valueOf(dashboardConfig.getMaxItems()), SWT.BORDER, new GridData(GridData.FILL_HORIZONTAL));
             maxItemsText.addModifyListener(e -> {
                 dashboardConfig.setMaxItems(CommonUtils.toInt(maxItemsText.getText(), dashboardConfig.getMaxItems()));
             });
@@ -136,9 +138,9 @@ public class DashboardItemConfigDialog extends BaseDialog {
         }
 
         {
-            Group viewGroup = UIUtils.createControlGroup(composite, "Dashboard view", 2, GridData.FILL_HORIZONTAL, 0);
+            Group viewGroup = UIUtils.createControlGroup(composite, UIDashboardMessages.item_config_dialog_dashboard_dashboard_view, 2, GridData.FILL_HORIZONTAL, 0);
 
-            Combo typeCombo = UIUtils.createLabelCombo(viewGroup, "View", "Dashboard view", SWT.BORDER | SWT.READ_ONLY);
+            Combo typeCombo = UIUtils.createLabelCombo(viewGroup, UIDashboardMessages.item_config_dialog_dashboard_view, UIDashboardMessages.item_config_dialog_dashboard_dashboard_view, SWT.BORDER | SWT.READ_ONLY);
             typeCombo.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
             {
                 List<DashboardViewType> viewTypes = DashboardRegistry.getInstance().getSupportedViewTypes(dashboardConfig.getDashboardDescriptor().getDataType());
@@ -154,28 +156,28 @@ public class DashboardItemConfigDialog extends BaseDialog {
                 });
             }
 
-            UIUtils.createCheckbox(viewGroup, "Show legend", "Show dashboard chart legend", dashboardConfig.isLegendVisible(), 2)
+            UIUtils.createCheckbox(viewGroup, UIDashboardMessages.item_config_dialog_dashboard_show_legend, UIDashboardMessages.item_config_dialog_dashboard_show_legend_hint, dashboardConfig.isLegendVisible(), 2)
                 .addSelectionListener(new SelectionAdapter() {
                     @Override
                     public void widgetSelected(SelectionEvent e) {
                         dashboardConfig.setLegendVisible(((Button)e.widget).getSelection());
                     }
                 });
-            UIUtils.createCheckbox(viewGroup, "Show grid", "Show dashboard grid", dashboardConfig.isGridVisible(), 2)
+            UIUtils.createCheckbox(viewGroup, UIDashboardMessages.item_config_dialog_dashboard_show_grid, UIDashboardMessages.item_config_dialog_dashboard_show_grid_hint, dashboardConfig.isGridVisible(), 2)
                 .addSelectionListener(new SelectionAdapter() {
                     @Override
                     public void widgetSelected(SelectionEvent e) {
                         dashboardConfig.setGridVisible(((Button)e.widget).getSelection());
                     }
                 });
-            UIUtils.createCheckbox(viewGroup, "Show domain axis", "Show domain (horizontal) axis", dashboardConfig.isDomainTicksVisible(), 2)
+            UIUtils.createCheckbox(viewGroup, UIDashboardMessages.item_config_dialog_dashboard_show_doamin_axis, UIDashboardMessages.item_config_dialog_dashboard_show_domain_axis_hint, dashboardConfig.isDomainTicksVisible(), 2)
                 .addSelectionListener(new SelectionAdapter() {
                     @Override
                     public void widgetSelected(SelectionEvent e) {
                         dashboardConfig.setDomainTicksVisible(((Button)e.widget).getSelection());
                     }
                 });
-            UIUtils.createCheckbox(viewGroup, "Show range axis", "Show range (vertical) axis", dashboardConfig.isDomainTicksVisible(), 2)
+            UIUtils.createCheckbox(viewGroup, UIDashboardMessages.item_config_dialog_dashboard_show_range_axis, UIDashboardMessages.item_config_dialog_dashboard_show_range_axis_hint, dashboardConfig.isDomainTicksVisible(), 2)
                 .addSelectionListener(new SelectionAdapter() {
                     @Override
                     public void widgetSelected(SelectionEvent e) {
@@ -202,7 +204,7 @@ public class DashboardItemConfigDialog extends BaseDialog {
 
     @Override
     protected void createButtonsForButtonBar(Composite parent) {
-        createButton(parent, IDialogConstants.CANCEL_ID, "Configuration", false).addSelectionListener(new SelectionAdapter() {
+        createButton(parent, IDialogConstants.CANCEL_ID, UIDashboardMessages.item_config_dialog_dashboard_configuration, false).addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
                 DashboardEditDialog editDialog = new DashboardEditDialog(getShell(), dashboardConfig.getDashboardDescriptor());
